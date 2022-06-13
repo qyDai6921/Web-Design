@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Assignment 1 - Survey</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Lato", sans-serif
+    }
+
+    .w3-bar,
+    h1,
+    button {
+      font-family: "Montserrat", sans-serif
+    }
+
+    .fa-anchor,
+    .fa-coffee {
+      font-size: 200px
+    }
+
+    .w3-top {
+      background-color: #006633
+    }
+
+    #heading_effect {
+      border: 5px solid;
+      border-color: #006633;
+      box-shadow: 20px 10px;
+    }
+  </style>
+</head>
+
+
+<!-- Body Section -->
+
+<body onload="checkCookie()">
+
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-card w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-"
+        href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="./info.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
+      <a href="./survey.html" class="w3-bar-item w3-button w3-padding-large w3-white">Survey</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+      <a href="./info.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header id="top" class="w3-container w3-light-grey  w3-center" style="padding:128px 16px">
+    <div id="heading_effect">
+      <h1 class="w3-margin w3-jumbo">Computer Science Department</h1>
+      <p class="w3-xlarge">Information Page</p>
+    </div>
+    <button onclick="document.getElementById('middle').scrollIntoView();"
+      class="w3-button w3-black w3-padding-large w3-large w3-margin-top">Get Started</button>
+  </header>
+
+  <!-- First Grid -->
+  <div id="middle" class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+      <div class="w3-twothird">
+
+        <!-- Survey Section -->
+        <h6>If your name is different than the name displayed in the greeting, <a style="color: red"
+            onclick="resetName()">Click Here</a> to change it.</h6>
+        <h1>Campus Visit Feedback</h1>
+
+        <h6 style="color:red">Field with a * are required!</h6>
+
+        <form id="survey" autocomplete="on" method="POST" action="ProcessServlet">
+          <label for="student_id">Student ID:*</label><br>
+          <input type="text" id="student_id" name="student_id" value="" required><br>
+          <label for="name">Name:*</label><br>
+          <input type="text" id="name" name="name" value="" required autofocus><br>
+          <label for="street_address">Street Address:*</label><br>
+          <input type="text" id="street_address" name="street_address" value="" required><br>
+          <label for="city">City:*</label><br>
+          <input type="text" id="city" name="city" value="" required><br>
+          <label for="state">State:*</label><br>
+          <input type="text" id="state" name="state" value="" required><br>
+          <label for="zip">Zip:*</label><br>
+          <input type="text" id="zip" name="zip" value="" required><br>
+          <label for="telephone_number">Telephone Number:*</label><br>
+          <input type="number" id="telephone_number" name="telephone_number" value="" placeholder="15551234567"
+            required><br>
+          <label for="e_mail"></label>E-Mail:*<br>
+          <input type="email" id="e_mail" name="e_mail" value="" placeholder="myemail@server.com" required><br>
+          <label for="url"></label>URL:<br>
+          <input type="url" id="url" name="url" value="" placeholder="https://mysite.com"><br>
+          <label for="date_of_suvery">Date of Survey:</label><br>
+          <input type="date" id="date_of_suvery" name="date_of_suvery" value=""><br>
+
+
+          <br>
+
+          <label for="InterestedArea">*What is your interested area of CS major?</label><br>
+          <p>Artificial Intelligence and Databases</p>
+          <p>Programming Languages and Software Engineering</p>
+          <p>Systems and Networks</p>
+          <p>Theoretical Computer Science</p>
+          <p>Visual Computing</p>
+          <input type="text" id="InterestedArea" name="InterestedArea" value="" style="width: 450px;" required><br>
+
+
+          <br>
+
+          <label for="highestDiff">*highest Difficulty you wish:</label><br>
+          <input type="number" step="1" min="1" max="5" id="highestDiff" name="highestDiff" value="" required>
+
+          <br>
+
+
+          <label for="additional_comments">Additional Comments</label><br>
+          <textarea id="additional_comments" name="additional_comments" rows="4" cols="40"></textarea>
+
+
+          <br>
+
+
+          <input id="submit" type="submit" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input id="reset" type="reset" class="w3-button w3-black w3-padding-large w3-large w3-margin-top">
+        </form>
+      </div>
+
+      <div class="w3-third w3-center">
+        <i class="fa fa-anchor w3-padding-64" style="color: #FFCC33"></i><br>
+      </div>
+    </div>
+  </div>
+
+  <div style="background-color: #006633" class="w3-container w3-center w3-padding-16">
+    <button onclick="document.getElementById('top').scrollIntoView();"
+      class="w3-button w3-black w3-padding-medium w3-medium w3-margin-top">Back to Top</button>
+  </div>
+
+  <div id="dialog" title="Status Message">
+    <p id="output"></p>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="w3-container w3-padding-16 w3-right w3-opacity">
+    <div class="w3-xlarge w3-padding-16">
+      <img src="https://i1.wp.com/qsecgmu.wpengine.com/wp-content/uploads/MasonM_Grn.png"
+        alt="George Mason University Logo" width="50" height="50">
+    </div>
+  </footer>
+
+
+  <script>
+    // Used to toggle the menu on small screens when clicking on the menu button (mobile support!)
+    function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+
+    function setCookie(cookie_name, cookie_value, expiration_days) {
+      const date = new Date();
+      date.setTime(date.getTime() + (expiration_days * 24 * 60 * 60 * 1000));
+      let expiration_date = "expires = " + date.toUTCString();
+      document.cookie = cookie_name + "=" + cookie_value + ";" + expiration_date + ";path=/";
+    }
+
+    function getCookie(cookie_name) {
+      let username = cookie_name + "=";
+      let decoded_cookie = decodeURIComponent(document.cookie);
+      let parts = decoded_cookie.split(';');
+      for (let i = 0; i < parts.length; i++) {
+        let x = parts[i];
+        while (x.charAt(0) == ' ') {
+          x = x.substring(1);
+        }
+        if (x.indexOf(username) == 0) {
+          return x.substring(username.length, x.length);
+        }
+      }
+      return "";
+    }
+
+    function checkCookie() {
+
+      let date = new Date();
+      if (username) {
+        if (date.getHours >= 5 && date.getHours < 12) {
+          alert("Good Morning, welcome to Computer department Survey");
+        }
+        else if (date.getHours >= 12 && date.getHours < 6) {
+          alert("Good Afternoon, welcome to Computer department Survey");
+        }
+        else {
+          alert("Good Evening, welcome to Computer department Survey");
+        }
+      }
+      else {
+        resetName();
+      }
+    }
+
+
+    function formValidate() {
+      let name = document.getElementById('name').value;
+      let address = document.getElementById('street_address').value;
+      let city = document.getElementById('city').value;
+      let state = document.getElementById('state').value;
+      let zip = document.getElementById('zip').value;
+
+
+      let error = "<ul>";
+      if (!/^[a-zA-z]+([\s][a-zA-Z]+)*$/.test(name)) {
+        error += "<li>Error illegal characters: Name can only contain letters!</li>";
+      }
+      if (!/^[a-zA-z\d]+([\s][a-zA-Z\d]+)*$/.test(address)) {
+        error += "<li>Error illagal characters: Address can only contains numbers and letters!</li>";
+      }
+      if (!/^[a-zA-z]+([\s][a-zA-Z]+)*$/.test(city)) {
+        error += "<li>Error illegal characters: City can only contain letters!</li>";
+      }
+      if (!/^[a-zA-z]+([\s][a-zA-Z]+)*$/.test(state)) {
+        error += "<li>Error illegal characters: State can only contain letters!</li>";
+      }
+      if (!/^[\d]+$/.test(zip)) {
+        error += "<li>Error illegal characters: Zip can only contain numbers!</li>";
+      }
+
+      if (error === "<ul>") {
+        document.getElementById("output").innerHTML = "Thanks for submitting the survey!";
+        return true;
+      }
+      else {
+        error += "</ul>";
+        document.getElementById("output").innerHTML = error;
+        return false;
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
